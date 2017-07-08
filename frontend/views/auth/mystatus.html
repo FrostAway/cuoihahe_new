@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="wrap" ng-include="userbar"></div>
+    </div>
+    <div class="col-sm-9">
+        <div class="wrap">
+        <h1 class="page-title cl-title"><span>Các bài đã đăng</span></h1>
+        <div class="page-content">
+            <div class="posts media_posts" media-status type="author">
+                <div class="post" ng-repeat="item in statuss">
+                    <div ng-include="statusMedia"></div>
+                </div>
+
+                <div ng-paginate ng-if="pages > 1"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

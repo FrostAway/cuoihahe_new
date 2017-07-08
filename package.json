@@ -1,0 +1,36 @@
+{
+  "name": "source",
+  "version": "1.0.0",
+  "main": "main.js",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "FrostLife",
+  "contributors": [],
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.4.0",
+    "body-parser": "^1.15.1",
+    "cheerio": "^0.20.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "express-validator": "^2.20.4",
+    "jimp": "^0.2.24",
+    "jsonwebtoken": "^6.2.0",
+    "mongoose": "^4.4.17",
+    "mongoose-transaction": "0.0.3",
+    "multer": "^1.1.0",
+    "nodemailer": "^2.4.2",
+    "nodemon": "^1.9.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "request": "^2.72.0"
+  }
+}

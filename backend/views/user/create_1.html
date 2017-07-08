@@ -1,0 +1,48 @@
+<div class="modal fade" ngmodal id="addModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <form class="" ng-submit="addNew(newUser, addForm.$valid)" name="addForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Thêm mới tài khoản</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{errorMess}}
+                    </div>
+                    <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{succMess}}
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-sm-3">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" ng-required="true" name="email" ng-model="newUser.email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" ng-required="true" name="password" ng-model="newUser.password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Role</label>
+                        <div class="col-sm-9">
+                            <select name="role" class="form-control" name="role" ng-model="newUser.role">
+                                <option value="author">Author</option>
+                                <option value="administrator">Administrator</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Hủy</button>
+                    <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

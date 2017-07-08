@@ -1,0 +1,50 @@
+<h1 class="page-header">Tạo thành viên</h1>
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <form class="" ng-submit="addNew(addForm.$valid)" name="addForm">
+
+                <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{errorMess}}
+                </div>
+                <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{succMess}}
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" ng-required="true" name="email" ng-model="newData.email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" ng-required="true" name="password" ng-model="newData.password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Role</label>
+                    <div class="col-sm-9">
+                        <select name="role" class="form-control" name="role" ng-model="newData.role">
+                            <option value="author">Người dùng</option>
+                            <option value="editor">Biên tập viên</option>
+                            <option value="administrator">Quản lý</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</button>
+                        <a ui-sref="user" class="btn btn-danger"><i class="fa fa-close"></i> Quay lại</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

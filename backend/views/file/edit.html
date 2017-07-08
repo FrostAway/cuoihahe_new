@@ -1,0 +1,41 @@
+<h1 class="page-header">Chỉnh sửa file</h1>
+
+<div class="page-content">
+    <form class="" ng-submit="doEdit(editForm.$valid)" name="editForm">
+
+        <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{errorMess}}
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{succMess}}
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2">Hình ảnh</label>
+            <div class="col-sm-10">
+                <img class="img-responsive" src="{{editData.url}}" alt="{{editData.url}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Tên file</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-required="true" name="title" ng-model="editData.title">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Đường dẫn</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="slug" ng-model="editData.url">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary"><i class="fa fa-save"></i> Cập nhật</button>
+                <a ui-sref="file" class="btn btn-danger"><i class="fa fa-close"></i> Hủy</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,73 @@
+<div class="tophead">
+    <div class="container">
+        <div class="pull-left">
+            <div class="socials">
+                <a href="#" target="_blank"><img src="/public/images/facebook-icon.png"></a>
+                <a href="#" target="_blank"><img src="/public/images/gplus-icon.png"></a>
+                <a href="#" target="_blank"><img src="/public/images/twitter-icon.png"></a>
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="loggedin_box rightbox" ng-if="isLoggedIn">
+                <div class="btn-group">
+                    <button type="button" class="dropdown-toggle btn-user" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> {{currentUser.name}} <i class="fa fa-caret-down"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right user-menu">
+                        <li><a ui-sref="profile"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                        <li><a ng-click="doLogout()"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="guest_box rightbox" ng-if="!isLoggedIn">
+                <ul class="list-inline">
+                    <li><a ui-sref="login" title="Đăng nhập"><i class="fa fa-key"></i> <span class="hidden-xs">Đăng nhập</span></a></li>
+                    <li><a ui-sref="signup" title="Đăng ký"><i class="fa fa-sign-in"></i> <span class="hidden-xs">Đăng ký</span></a></li>
+                </ul>
+            </div>
+            <div class="upload_box rightbox">
+                <div>
+                    <a ui-sref="createStatus" class="btn-upload" title="upload"><i class="fa fa-upload"></i> <span class="hidden-xs">Đăng bài</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="nicecl_bd"></div>
+
+<nav class="navbar navbar-default" id="topmenu">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bsmenu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home"><img class="img-logo" src="/public/images/logo.png"></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bsmenu">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a ui-sref="status({orderby: 'created_at', order: 'desc'})" ui-sref-opts="{reload: true, inherit: false}"><i class="fa fa-fire"></i> Mới nhất</a></li>
+                <li ui-sref-active="active"><a ui-sref="status({orderby: 'views', order: 'desc'})" ui-sref-opts="{reload: true, inherit: false}"><i class="fa fa-thumbs-o-up"></i> Hot nhất</a></li>
+                <li ng-repeat="item in menus" ui-sref-active="active"><a ui-sref="{{item.state}}" ui-sref-opts="{reload: true, inherit: false}"><i class="{{item.icon}}"></i> {{item.title}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-form navbar-right">
+                <li>
+                    <form class="search-form" ng-submit="doSearch(searchForm.$valid)" name="searchForm" ng-search-form>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control searchKey" ng-model="searchKey" ng-required="true" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                                <button type="submit" ng-disabled="searchForm.$invalid" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

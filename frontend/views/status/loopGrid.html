@@ -1,0 +1,25 @@
+<div class="inner">
+    <div class="thumb">
+        <a ui-sref="showStatus({id: item._id, slug: item.slug})">
+            <ng-thumb id="{{item.fileId}}" size="medium"><img class="img-responsive" src="/public/images/default.gif"></ng-thumb>
+        </a>
+        <i-icon class="icon" type="{{item.filetype}}"></i-icon>
+        <div ng-include="shareurl" class="sharebox"></div>
+        <div class="date"><i class="fa fa-clock-o"></i> {{toSeconds(item.created_at) | date: "dd/MM/yyyy"}}</div>
+        <div class="author">Đăng bởi: {{item.author.name}}</div>
+    </div>
+    <div class="desc">
+        <h2 class="title"><a ui-sref="showStatus({id: item._id, slug: item.slug})">{{item.title}}</a></h2>    
+        <p class="excerpt">{{item.content}}</p>
+    </div>
+    <div class="tools">
+        <div class="pull-left">
+            <a class="addwish btn btn-sm btn-warning" wishbtn="{{item._id}}" ng-click="addWish(item._id)" title="Lưu lại"><i class="fa fa-heart"></i> <span class="num">{{item.wishs.length}}</span></a>
+        </div>
+        <div class="pull-right">
+            <a class="like btn btn-sm btn-primary" likebtn="{{item._id}}" ng-click="addLike(item._id)"><i class="fa fa-thumbs-up"></i> <span class="num">{{item.likes.length}}</span></a>
+            <a class="views btn btn-sm btn-info"><i class="fa fa-eye"></i> <span class="num">{{item.views}}</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

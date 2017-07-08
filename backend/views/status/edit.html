@@ -1,0 +1,92 @@
+<h1 class="page-header">Sửa trạng thái</h1>
+
+<div class="page-content">
+    <form class="" ng-submit="doEdit(editForm.$valid)" name="editForm">
+
+        <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{errorMess}}
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{succMess}}
+        </div>
+
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="form-group row">
+                    <label class="col-sm-2">Tiêu đề</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-required="true" name="title" ng-model="editData.title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <input type="text" class="form-control" name="slug" ng-model="editData.slug" placeholder="Liên kết tĩnh (url)">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Nội dung</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" placeholder="Nội dung" ng-required="true" ng-model="editData.content" rows="8"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Thể loại</label>
+                    <div class="col-sm-10">
+                        <select multiple ng-model="editData.cats" cats-select class="form-control">
+                            <option ng-repeat="item in cats" value="{{item._id}}">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Chọn thẻ đã có</label>
+                    <div class="col-sm-10">
+                        <select multiple name="tags" ng-model="editData.tags" tags-select class="form-control">
+                            <option ng-repeat="item in tags" value="{{item._id}}">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Hoặc thêm thẻ mới</label>
+                    <div class="col-sm-10">
+                        <select multiple name="newtags" ng-model="editData.newtags" tags-select class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Key word</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="key_word" ng-model="editData.key_word">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2">Meta description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="meta_description" ng-model="editData.meta_description" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group thumb_group">
+                    <label>Ảnh đại diện</label>
+                    <div class="thumb_box">
+                        <div class="thumb_box" ng-if="editData.fileId">
+                            <ng-thumbnail id="{{editData.fileId}}" size="full"></ng-thumbnail>
+                            <a ng-click="removeThumb()" class="close">&times;</a>
+                        </div>
+                        <a ng-click="loadFiles(false)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalFiles"><i class="fa fa-image"></i> Thêm ảnh</a>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary"><i class="fa fa-save"></i> Cập nhật</button>
+                    <a ui-sref="status" class="btn btn-danger"><i class="fa fa-close"></i> Hủy</a>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div ng-controller="fileModalCtrl">
+        <div ng-include="modalFilesLink"></div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<ul class="pagination">
+    <li><a href="#" ng-click="goPage(page - 1)">&laquo;</a></li>
+    <li ng-repeat="num in [] | range: pages" ng-class="{'active' : page == num}">
+        <a href="#" ng-click="goPage(num)">{{num}}</a>
+    </li>
+    <li><a href="#" ng-click="goPage(nextPage)">&raquo;</a></li>
+</ul>

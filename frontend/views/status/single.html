@@ -1,0 +1,52 @@
+
+<div class="row">
+    <div class="col-sm-2" ng-include="leftbar"></div>
+    
+    <div class="col-sm-7">
+        <div class="wrap">
+            <h1 class="page-title cl-title"><span>{{showItem.title}}</span></h1>
+           
+            <div class="row meta-item-h">
+                <div class="col-xs-6 tools">
+                    <a class="like btn btn-sm btn-primary" likebtn="{{showItem._id}}" ng-click="addLike(item._id)"><i class="fa fa-thumbs-up"></i> <span class="num">{{showItem.likes.length}}</span></a>
+                    <a class="views btn btn-sm btn-info"><i class="fa fa-eye"></i> <span class="num">{{showItem.views}}</span></a>
+                    <a class="addwish btn btn-sm btn-warning" wishbtn="{{showItem._id}}" ng-click="addWish(item._id)" title="Lưu lại"><i class="fa fa-heart"></i> <span class="num">{{showItem.wishs.length}}</span></a>
+                </div>
+                <div class="col-xs-6 share text-right">
+                    <div class="sharebox" ng-include="shareurl"></div>
+                </div>
+            </div>
+            <div class="thumbnail_box">
+                <div class="thumb_show" ng-if="showItem.type !== 'youtube'">
+                    <ng-thumb id="{{showItem.fileId}}"></ng-thumb>
+                </div>
+                <div ng-if="showItem.type === 'youtube'">
+                    <iframe  width="640" height="360" src="{{trustLink('https://www.youtube.com/embed/' + showItem.videoId)}}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="meta-item-b">
+                <span class="author">Đăng bởi: {{showItem.author.name}}</span> | 
+                <span class="date">Vào lúc: {{toSeconds(showItem.created_at) | date: "dd/MM/yyyy"}}</span>
+            </div>
+
+            <div class="entry_content">
+                {{showItem.content}}
+                <div class="cats">
+                    Danh mục: <a ng-repeat="item in showItem.cats" ui-sref="showCat({id: item._id})"> {{item.name}}, </a>
+                </div>
+                <div class="tags">
+                    Xem thêm: <a ng-repeat="item in showItem.tags" ui-sref="showTag({id: item._id, slug: item.slug})"> {{item.name}}, </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div ng-include="commentTpl"></div>
+        </div>
+    </div>
+
+    <div class="col-sm-3" ng-include="rightbar"></div>
+</div>

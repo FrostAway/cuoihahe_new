@@ -1,0 +1,30 @@
+<div class="navactions">
+    <div class="pull-left">
+        <permiss cap="{{publishCap}}">
+            <a ui-sref="{{createState}}" ng-hide="hideAddBtn" class="addlink btn btn-sm btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+        </permiss>
+        <form name="actionForm" ng-submit="multiAction(action, actionForm.$valid)" class="action-form" novalidate>
+            <div class="input-group input-group-sm">
+                <select name="action" ng-model="action" ng-required="true" class="form-control">
+                    <option value="">Chọn hành động</option>
+                    <option value="delete">Xóa</option>
+                </select>
+                <span class="input-group-btn">
+                    <button type="submit" ng-disabled="actionForm.$invalid" class="btn btn-primary" ng-confirm="Bạn chắc chắn xóa?">Thực hiện</button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <div class="pull-right">
+        <form name="searchForm" method="get" ng-submit="doSearch(key)" class="search-form" novalidate>
+            <div class="input-group input-group-sm">
+                <input type="text" name="key" ng-model="key" ng-change="keyChange(key)" ng-required="true" class="form-control">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

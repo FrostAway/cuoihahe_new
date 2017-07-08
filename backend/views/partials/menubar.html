@@ -1,0 +1,15 @@
+
+<script type="text/ng-template" id="menuitem.html">
+    <a ui-sref="{{item.state}}" ng-click="toggleSub()">
+        <i ng-if="item.icon" class="{{item.icon}}"></i>
+        <span>{{item.title}}</span>
+        <b ng-if="item.childs.length > 0" ng-click="toggleChild(item)" class="fa fa-angle-down"></b>
+    </a>
+    <ul class="child-menu" ng-if="item.childs.length > 0" ng-hide="item.hideChild">
+        <li class="item" ng-repeat="item in item.childs" ng-include="'menuitem.html'"></li>
+    </ul>
+</script>
+
+<ul class="menu-list">
+    <li class="item" ng-repeat="item in adMenus" ng-include="'menuitem.html'"></li>
+</ul>

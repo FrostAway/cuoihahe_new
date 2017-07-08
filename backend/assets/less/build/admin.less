@@ -1,0 +1,283 @@
+@import "../mixins.less";
+
+body{
+    font-family: "Tahoma", sans-serif; font-size: 14px; background: @bodybg;
+}
+
+a{
+    &:hover, &:focus{
+        text-decoration: none;
+        outline: none;
+    }
+    .transi(all ease-in-out 0.3s);
+}
+ul{
+    list-style: none;
+    padding: 0; margin: 0;
+}
+
+.loading{
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    .icon{
+        position: absolute; top: 50%; left: 50%;
+        .transform(translate(-50%, -50%));
+        width: 30px; height: 30px; z-index: 2005;
+        background: url(../../../public/images/loading.gif) no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+.logon{
+    background: url(../../../public/images/adminbg.jpg) no-repeat;
+    background-size: cover;
+}
+
+#headnav{
+    background: @topnavbg; margin-bottom: 0; .shadown(0 1px 5px);
+    ul.nav{
+        li{
+            a{
+                color: @topnavcl;
+            }
+            .dropdown-menu{
+                padding-top: 0; padding-bottom: 0; .border-radius(0); min-width: 100%;
+                li{
+                    a{
+                        padding: 10px 15px; white-space: nowrap; background: @topnavbg;
+                        border-bottom: 1px solid#009999;
+                    }
+                }
+            }
+        }
+        li a:hover, .active a, li a:focus{
+            color: @hovercl;
+        }
+    }
+    .navbar-brand{
+        color: @topnavcl;
+        img{
+            height: 100%; width: auto;
+        }
+    }
+    .navbar-toggle{
+        .border-radius(0); border: 0; background: @mainbd; border: 1px solid #fff;
+    }
+}
+.sidebar_col{
+    .transi(all ease-in-out .3s);
+    width: 230px;
+    position: fixed; top: 50px; left: 0;
+    min-height: 100vh; background: @sbbg;
+    color: #fff;
+    a{color: #fff;}
+}
+.collapse-menu{
+    padding: 5px;
+    a{
+        display: inline-block; font-size: 17px; padding: 0 5px;
+    }
+}
+.content_col{
+    .transi(all ease-in-out .3s);
+    margin-left: 230px; padding: 70px 20px 30px; min-height: 100vh;
+    background: #fff;
+}
+.sbcollapse, .login-page, .signup-page{ 
+    .sidebar_col{
+        width: 37px; overflow: hidden;
+    }
+    ul.menu-list{
+        .item a{
+            white-space: nowrap;
+            b{opacity: 0;}
+        }
+    }
+    .content_col{
+        margin-left: 37px;
+    }
+}
+ul.menu-list{
+    .item{
+        position: relative;
+        a{
+            display: block; padding: 10px;
+            i{display: inline-block; min-width: 18px; margin-right: 5px;}
+            span{display: inline-block;}
+            b{cursor: pointer; position: absolute; top: 10px; right: 8px; font-size: 18px; padding: 0 5px;}
+        }
+        .child-menu{
+            .transi(all ease-in-out .2s);
+            .item a{padding-left: 37px;}
+        }
+    } 
+    .item.active a, .item a:hover, .item a:focus{
+        background: @sbhover;
+    }
+}
+
+.fileList{
+    margin-left: -5px; margin-right: -5px;
+    a{display: inline-block; margin-bottom: 10px; padding-left: 5px; padding-right: 5px; cursor: pointer; max-width: 97px;}
+    a.checked .thumb{
+        border: 3px solid #00A000;
+        position: relative; display: block;
+        &:after{
+            position: absolute; content: "\f00c"; display: inline-block; width: 20px; height: 20px;
+            font-family: FontAwesome; padding: 0 2px; border: 1px solid #000;
+            top: -10px; right: -10px; background: #fff;
+        }
+    }
+}
+
+.form-group{
+    strong{margin-bottom: 10px; display: block;}
+}
+.thumb_group{
+    .thumb_box{
+        margin-bottom: 10px;
+        position: relative;
+        .close{
+            position: absolute; top: 0; right: 0; padding: 3px; opacity: 0.5; background: #fff;
+            &:hover{opacity: 0.8;}
+        }
+    }
+}
+
+#addModal, #editModal{
+    overflow-y: auto;
+    .modal-dialog{
+        /*margin: 5px auto; max-height: 97vh; overflow: auto;*/
+    }
+}
+#modalFiles{
+    z-index: 300000;
+}
+
+.lgTitle{
+    font-size: 25px; margin-top: 0; margin-bottom: 22px;
+}
+
+.page-header{font-size: 20px; margin-top: 20px;}
+.page-title, .box-title, sub-title{
+    text-transform: uppercase;  margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+.page-title{
+    font-size: 20px; font-weight: 600;
+    color: @pagetitle;
+}
+.single-title{
+    font-size: 18px; color: @hovercl; margin-top: 35px;
+}
+.sub-title{
+    font-size: 16px;
+}
+.box_desc{
+    font-size: 24px;
+}
+.box-title{
+    font-size: 17px;
+}
+
+.cat-checklist{
+    margin-top: 10px;
+    li{
+        label{font-weight: 400;}
+        ul.list-child{padding-left: 17px;}
+    }
+}
+
+.tag_group{
+    .input-group{margin-bottom: 10px;}
+}
+.selectTags{
+    margin: 8px 0;
+    span{margin-right: 5px; padding: 3px 5px; margin-bottom: 4px; display: inline-block;}
+    a{margin-left: 3px;}
+}
+.listTags{
+    a{display: inline-block; padding: 1px 3px; border: 1px solid @mainbd; .border-radius(2px); margin-right: 3px; margin-bottom: 3px;}
+}
+
+.pagebox{
+    margin-bottom: 25px; 
+}
+.wrapper{
+    background: @wrapcl; padding: 15px;
+}
+.wrap{
+    margin-bottom: 20px; background: @wrapcl;
+    .box-content{
+        padding: 10px;
+    }
+    .box-title{
+        padding: 5px 10px; border-bottom: 1px solid @bdcl;
+        margin-bottom: 0;
+    }
+}
+.contentbox{
+    .box-title{
+
+    }
+}
+.navactions{
+    margin-bottom: 10px;
+    .addlink{display: inline-block; vertical-align: top;}
+    .action-form{max-width: 280px; display: inline-block;}
+    .search-form{max-width: 200px; display: inline-block;}
+}
+table{
+    .td_action{min-width: 93px;}
+}
+
+.contentbox{
+    border: 1px solid @bdcl;
+    .shadown(0 1px 2px rgba(0, 0, 0, 0.22));
+}
+
+.users{
+    .title{
+        font-size: 14px; font-weight: 700;
+    }
+    .meta{font-size: 13px; color: #666666;}
+}
+
+.posts{
+    .post{
+    }
+    .title, .title a{
+        color: @titlecl; font-size: 15px;
+        &:hover{color: @titlehv;}
+        i{min-width: 18px; margin-right: 3px;}
+    }
+    .meta{color: @metacl; font-size: 13px;}
+}
+
+.list_posts{
+    .post{
+        margin-bottom: 10px;
+    }
+    .meta{margin-left: 25px;}
+}
+
+.media_users{
+    .user{
+        &:first-child{margin-top: 0;}
+        margin-top: 10px;
+    }
+    .media{
+        display: block;
+    }
+}
+
+#backtop{
+    position: fixed;
+    bottom: 20%; right: 1px;
+}
+
+footer{
+    padding: 15px 0;
+}

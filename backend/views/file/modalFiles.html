@@ -1,0 +1,37 @@
+<div class="modal fade" id="modalFiles" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">    
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-uppercase">Chọn ảnh</h4>
+            </div>
+            <div class="modal-body">
+                <div class="uploadbox">
+                    <input type="file" multiple nv-file-select uploader="uploader">
+                </div>
+                <hr />
+                <div id="filelist" class="fileList" ng-if="files">
+                    <div ng-if="files">
+                        <a ng-repeat="item in files" ng-click="selectItem(item)" ng-class="{'checked': inArray(item, checkedItem)}">
+                            <ng-thumbnail class="thumb" id="{{item._id}}" size="thumbnail"></ng-thumbnail>
+                        </a>
+                        <div class="itemChecked" ng-if="checkedItem.length>0">{{checkedItem.length}} file được chọn</div>
+                        <div class="paginate" ng-if="pages>1">
+                            <ul class="pager">
+                                <li><a href="#" ng-click="goPage(page-1)" ng-disabled="page<=1">Trước</a></li>
+                                <li><a href="#" ng-click="goPage(nextPage)" ng-disabled="nextPage>=pages">Tải thêm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div ng-if="!files">
+                        <p>Không có file nào!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Hủy</button>
+                <button type="button" ng-click="smChoosed()" data-dissmiss="modal" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

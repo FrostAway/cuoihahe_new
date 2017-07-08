@@ -1,0 +1,42 @@
+<h1 class="page-header">Danh sánh tags</h1>
+
+<div class="page-content">
+    <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{errorMess}}
+    </div>
+    <div ng-include="navTableLink"></div>
+    <div class="table-responsive" ng-if="items">
+        <table class="table table-striped">
+            <thead class="text-left">
+                <tr>
+                    <th><input type="checkbox" class="checkAll" ng-click="checkAll($event)"></th>
+                    <th>Tên <a href="#" ng-click="doSort('title')"><i class="fa fa-sort"></i></a></th>
+                    <th>Đường dẫn</th>
+                    <!--<th>Số bài <a href="#" ng-click="doSort('count')"><i class="fa fa-sort"></i></a></th>-->
+                    <!--<th>Keyword</th>-->
+                    <th class="td_action">Hành động</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="item in items">
+                <td><input type="checkbox" class="checkItem" ng-click="addCheck($event, item._id)" ng-checked="isCheckAll"></td>
+                <td>{{item.name}}</td>
+                <td>{{item.slug}}</td>
+                <!--<td>{{item.count}}</td>-->
+                <!--<td>{{item.keyword}}</td>-->
+                <td>
+                <permiss cap="manage_tags">
+                        <a class="btn btn-sm btn-primary" ui-sref="editTag({id: item._id})"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-sm btn-danger" ng-click="delItem(item._id)" ng-confirm="Bạn chắc chắn xóa?"><i class="fa fa-trash"></i></a>
+                </permiss>
+                </td>
+            </tr>
+        </table>
+        
+        <nav class="paginate text-right" ng-paginate ng-if="pages > 1"></nav>
+        
+    </div>
+    <div ng-if="!items">
+        <p>Không có dữ liệu!</p>
+    </div>
+</div>

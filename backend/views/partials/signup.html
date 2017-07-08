@@ -1,0 +1,46 @@
+<div class="container">
+    <br />
+    <h1 class="page-title text-center">Chào mừng đến với Admin panel</h1>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            
+            <div class="well">
+                <h2 class="lgTitle">Tạo tài khoản</h2>
+                <form method="post" class="logonForm" ng-submit="doSignup(snForm.$valid)" name="snForm" novalidate>
+                    <div class="form-group has-feedback" ng-class="{'has-error': !snForm.email.$valid && !snForm.$pristine}">
+                        <label>Địa chỉ email (*)</label>
+                        <input type="email" name="email" ng-model="newuser.email" ng-required="true" class="form-control" placeholder="Nhập email">
+                        <span class="form-control-feedback"><i class="fa fa-user"></i></span>
+
+                        <div class="help-block" ng-show="snForm.email.$dirty && snForm.email.$error.required">Email là bắt buộc!</div>
+                        <div class="help-block" ng-show="snForm.email.$dirty && snForm.email.$error.email">Phải là email!</div>
+                    </div>
+
+                    <div class="form-group has-feedback" ng-class="{'has-error': !snForm.password.$valid && !snForm.$pristine}">
+                        <label>Mật khẩu (*)</label>
+                        <input type="password" name="password" ng-model="newuser.password" ng-required="true" ng-minlength="6" class="form-control" placeholder="Nhập mật khẩu">
+                        <span class="form-control-feedback"><i class="fa fa-lock"></i></span>
+
+                        <div class="help-block" ng-show="snForm.password.$dirty && snForm.password.$error.required">Mật khẩu là bắt buộc!</div>
+                        <div class="help-block" ng-show="snForm.password.$dirty && snForm.password.$error.minlength">Mật khẩu quá ngắn!</div>
+                    </div>
+
+                    <div class="form-group has-feedback" ng-class="{'has-error': !snForm.repassword.$pristine && !snForm.repassword.$valid}">
+                        <label>Nhập lại mật khẩu (*)</label>
+                        <input type="password" name="repassword" ng-model="newuser.repassword" ng-required="true" ng-minlength="6" ng-match="password" class="form-control" placeholder="Nhập mật khẩu">
+                        <span class="form-control-feedback"><i class="fa fa-lock"></i></span>
+
+                        <div class="help-block" ng-show="snForm.repassword.$dirty && snForm.repassword.$error.required">Mật khẩu là bắt buộc!</div>
+                        <div class="help-block" ng-show="snForm.repassword.$dirty && snForm.repassword.$error.minlength">Mật khẩu quá ngắn!</div>
+                        <div class="help-block" ng-show="snForm.repassword.$dirty && snForm.repassword.$error.match">Mật khẩu không khớp!</div>
+                    </div>
+                    <div class="alert alert-dismissible alert-danger" ng-show="errMess">{{errMess}}</div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" ng-disabled="snForm.$invalid"><i class="fa fa-sign-in"></i> Đăng ký</button>
+                    </div>
+                </form>
+                <p class="text-right">Đã có tài khoản? <a href="backend/login">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+</div>

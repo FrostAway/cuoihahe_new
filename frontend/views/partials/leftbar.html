@@ -1,0 +1,19 @@
+<div class="cat_box" catbox>
+    <script type="text/ng-template" id="treecat.html">
+        <a ui-sref="showCat({id: item._id, slug: item.slug})">{{item.name}}</a>
+        <ul ng-if="item.childs.length>0">
+        <li ng-repeat="item in item.childs" ui-sref-active="active" ng-include="'treecat.html'"></li>
+        </ul>
+    </script>
+    <h3 class="box-title bg-title mg-btm-10"><span>Danh mục</span></h3>
+    <ul class="list-cat wrap">
+        <li ng-repeat="item in cats" ng-include="'treecat.html'" ui-sref-active="active"></li>
+    </ul>
+</div>
+
+<div class="tag_box" tagbox>
+    <h3 class="box-title bg-title mg-btm-10"><span>Thẻ</span></h3>
+    <ul class="list-tag list-inline wrap">
+        <li ng-repeat="item in tags" ui-sref-active="active"><a ui-sref="showTag({id: item._id, slug: item.slug})">{{item.name}}</a></li>
+    </ul>
+</div>

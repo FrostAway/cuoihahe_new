@@ -1,0 +1,111 @@
+<div class="wrap">
+    <h1 class="page-header">Đăng bài</h1>
+
+    <div class="content-page">
+        <form ng-submit="addNew(addForm.$valid)" name="addForm">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errMess">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{errMess}}
+                    </div>
+                    <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{succMess}}
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3">Bạn muốn đăng gì</label>
+                        <div class="col-sm-9">
+                            <ul class="addTabs list-inline">
+                                <li><a class="btn btn-sm btn-success" ng-click="addTab('upload.html')"><i ng-if="tablink == 'upload.html'" class="fa fa-check"></i> Tải ảnh lên</a></li>
+                                <li><a class="btn btn-sm btn-primary" ng-click="addTab('uplink.html')"><i ng-if="tablink == 'uplink.html'" class="fa fa-check"></i> Đăng link ảnh</a></li>
+                                <li><a class="btn btn-sm btn-info" ng-click="addTab('youtube.html')"><i ng-if="tablink == 'youtube.html'" class="fa fa-check"></i> Đăng video youtube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <div class="tabcontent" ng-include="tablink"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Tiêu đề</label>
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="newItem.title" ng-required="true" class="form-control" placeholder="Tiêu đề">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea ng-model="newItem.content" class="form-control" rows="3" placeholder="Mô tả của bạn"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Danh mục</label>
+                        <div class="col-sm-9">
+                            <select name="cats" multiple ng-model="newItem.cats" class="form-control" cats-select>
+                                <option ng-repeat="item in crcats" value="{{item._id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Thêm thẻ mới</label>
+                        <div class="col-sm-9">
+                            <select name="tags" multiple ng-model="newItem.newtags" class="form-control" tags-select>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Hoặc chọn thẻ đã có</label>
+                        <div class="col-sm-9">
+                            <select name="tags" multiple ng-model="newItem.tags" class="form-control" tags-select>
+                                <option ng-repeat="item in crtags" value="{{item._id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3">Nguồn</label>
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="newItem.source" class="form-control" placeholder="Bạn lấy ảnh/video từ đâu?">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button class="btn btn-primary" ng-disabled="addForm.$invalid" type="submit"><i class="fa fa-upload"></i> Đăng bài</button>
+                            <a class="btn btn-warning" ui-sref="home"><i class="fa fa-forward"></i> Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="loaded text-center" ng-bind-html="loaded"></div>
+                </div>
+            </div>
+        </form>
+
+        <script type="text/ng-template" id="upload.html">
+            <input type="file" name="file" nv-file-select uploader="uploader">
+            <input type="hidden" ng-model="newItem.type" ng-init="newItem.type='upload'">
+        </script>
+        <script type="text/ng-template" id="uplink.html">
+            <p>Hiện tại website chỉ hỗ trợ link từ pinterest, gifphy, haivn ...</p>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="newItem.fromUrl" ng-paste="pasteUrl($event)" placeholder="Dán link vào đây">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-check"></i> Xác nhận</button>
+                </span>
+            </div>
+            <input type="hidden" ng-model="newItem.type" ng-init="newItem.type='uplink'">
+        </script>
+        <script type="text/ng-template" id="youtube.html">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="newItem.fromUrl" ng-paste="pasteUrl($event)" placeholder="Dán link youtube vào đây">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-check"></i> Xác nhận</button>
+                </span>
+            </div>
+            <input type="hidden" ng-model="newItem.type" ng-init="newItem.type='youtube'">
+        </script>
+    </div>
+</div>
+

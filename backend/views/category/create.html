@@ -1,0 +1,65 @@
+<h1 class="page-header">Tạo thể loại</h1>
+
+<div class="page-content">
+    <form class="" ng-submit="addNew(addForm.$valid)" name="addForm">
+        <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{errorMess}}
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{succMess}}
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2">Tên</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-required="true" name="title" ng-model="newData.name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 col-sm-offset-2">
+                <input type="text" class="form-control" name="slug" ng-model="newData.slug" placeholder="Liên kết tĩnh (url)">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Mô tả</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="description" placeholder="Nội dung" ng-model="newData.description" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <label class="col-sm-2">Mục cha</label>
+            <div class="col-sm-10">
+                <select name="parent" ng-model="newData.parent" class="form-control" ng-bind-html="treeCatHtml">
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Icon</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="icon" ng-model="newData.icon">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Key word</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="key_word" ng-model="newData.keyword">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Meta description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="meta_description" ng-model="newData.meta_description" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</button>
+                <a class="btn btn-danger" ui-sref="category"><i class="fa fa-close"></i> Hủy</a>
+            </div>
+        </div>
+    </form>
+</div>

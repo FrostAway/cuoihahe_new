@@ -1,0 +1,65 @@
+
+<h1 class="page-title">Chào mừng đến với trang quản trị</h1>
+
+<div class="row">
+    <div class="col-md-6 content_left">
+        <div class="contentbox wrap">
+            <h3 class="box-title">Bài viết gần đây <a class="pull-right" href="#" data-target="#newposts" data-toggle="collapse"><i class="fa fa-caret-right"></i></a></h3>
+            <div id="newposts" class="box-content collapse in">
+                <ul class="posts list_posts">
+                    <li class="post" ng-repeat="item in statuss">
+                        <a ui-sref="editStatus({id: item._id})">
+                            <div class="title">
+                                <i class="fa fa-edit"></i>
+                                <span>{{item.title}}</span>
+                            </div>
+                            <div class="meta">
+                                <span class="date"><i class="fa fa-clock-o"></i> {{item.created_at}}</span>
+                                <span class="author"><i class="fa fa-user"></i> {{item.author.name}}</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="contentbox wrap">
+            <h3 class="box-title">Thành viên mới <a class="pull-right" href="#" data-target="#newusers" data-toggle="collapse"><i class="fa fa-caret-right"></i></a></h3>
+            <div id="newusers" class="box-content collapse in">
+                <ul class="users media_users">
+                    <li class="user" ng-repeat="item in users">
+                        <a ui-sref="userEdit({id: item._id})" class="media">
+                            <div class="thumb media-left pull-left">
+                                <img src="/public/images/usericon.png">
+                            </div>
+                            <div class="user_desc media-body">
+                                <h4 class="title media-heading">{{item.name}}</h4>
+                                <div class="meta">
+                                    <span class="date">Đăng ký lúc: {{item.created_at}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 content_right">
+        <div class="contentbox wrap">
+            <h3 class="box-title">Bình luận gần đây <a class="pull-right" href="#" data-target="#newcomments" data-toggle="collapse"><i class="fa fa-caret-right"></i></a></h3>
+            <div id="newcomments" class="box-content collapse in">
+                <ul class="posts list_posts">
+                    <li class="post" ng-repeat="item in comments">
+                        <a ui-sref="editComment({id: item._id})">
+                            <div class="title">
+                                <i class="fa fa-comment"></i>
+                                <span>bình luận cho: </span>
+                                <span>{{item.post.title}}</span>
+                            </div>
+                            <div class="meta">{{item.content}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

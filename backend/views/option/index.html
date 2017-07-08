@@ -1,0 +1,61 @@
+<h1 class="page-header">Cài đặt</h1>
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="page-header">Danh sánh tùy chọn</h2>
+            <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{errorMess}}
+            </div>
+
+            <div ng-include="navTableLink"></div>
+            <div class="table-responsive" ng-if="items">
+                <table class="table table-striped">
+                    <thead class="text-left">
+                        <tr>
+                            <th><input type="checkbox" class="checkAll" ng-click="checkAll($event)"></th>
+                            <th>Tên <a href="#" ng-click="doSort('key')"><i class="fa fa-sort"></i></a></th>
+                            <th>Giá trị <a href="#" ng-click="doSort('keyval')"><i class="fa fa-sort"></i></a></th>
+                            <th class="td_action">Action</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="option in items">
+                        <td><input type="checkbox" class="checkItem" ng-click="addCheck($event, item._id)" ng-checked="isCheckAll"></td>
+                        <td>{{option.key}}</td>
+                        <td>{{option.keyval}}</td>
+                        <td>
+                        <permiss cap="manage_options">
+                            <a class="btn btn-sm btn-primary" ng-click="loadEdit(option)" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-sm btn-danger" ng-click="delItem(option._id)" ng-confirm="Bạn chắc chắn xóa?"><i class="fa fa-trash"></i></a>
+                        </permiss>
+                    </td>
+                    </tr>
+                </table>
+
+                <nav class="paginate text-right" ng-paginate ng-if="pages > 1"></nav>
+
+            </div>
+            <div ng-if="!items">
+                <p>Không có dữ liệu!</p>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <h2 class="page-header">Thêm mới/Cập nhật</h2>
+            <form ng-submit="addNew(newData, addForm.$valid)" name="addForm">
+                <div class="form-group">
+                    <label>Tên</label>
+                    <input type="text" name="keyname" ng-model="newData.key" ng-required="true" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Giá trị</label>
+                    <textarea name="keyval" ng-model="newData.keyval" ng-required="true" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" ng-disabled="addForm.$invalid"><i class="fa fa-save"></i> Thêm mới</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

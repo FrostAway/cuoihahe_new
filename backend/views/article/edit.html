@@ -1,0 +1,95 @@
+<h1 class="page-title">Chỉnh sửa bài viết</h1>
+
+<div class="page-content">
+    <form class="" ng-submit="doEdit(addForm.$valid)" name="addForm">
+
+        <div class="alert alert-warning alert-dismissible" role="alert" ng-if="errorMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{errorMess}}
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert" ng-if="succMess">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{succMess}}
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Tiêu đề</label>
+                    <input type="text" class="form-control" ng-required="true" name="title" ng-model="editData.title" placeholder="Tiêu đề">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="slug" ng-model="editData.slug" placeholder="Liên kết tĩnh (url)">
+                </div>
+                <div class="form-group">
+                    <label>Nội dung</label>
+                    <textarea class="form-control" placeholder="Nội dung" ng-required="true" ng-model="editData.content" rows="8"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Keyword</label>
+                    <input type="text" class="form-control" name="key_word" ng-model="editData.key_word" placeholder="Keyword">
+                </div>
+                <div class="form-group">
+                    <label>Meta description</label>
+                    <textarea class="form-control" name="meta_description" ng-model="editData.meta_description" rows="2" placeholder="Meta description"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <strong>Ảnh đại diện</strong>
+                    <div class="thumb_group">
+                        <div class="thumb_box" ng-if="editData.thumbnail_id">
+                            <ng-thumbnail id="{{editData.thumbnail_id}}" size="full"></ng-thumbnail>
+                            <a ng-click="removeThumb()" class="close">&times;</a>
+                        </div>
+                        <a ng-click="loadFiles(false)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalFiles"><i class="fa fa-image"></i> Thêm ảnh</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <strong>Danh mục</strong>
+                    <script type="text/ng-template" id="catcheckedit.html">
+                        <label><input type="checkbox" ng-checked="item._id | isChecked: editData.cats" ng-click="addEditCat($event, item._id)"> {{item.name}}</label>
+                        <ul class="list-child" ng-if="item.childs.length > 0">
+                        <li ng-repeat="item in item.childs" ng-include="'catcheckedit.html'"></li>
+                        </ul>
+                    </script>
+                    <div class="cat_group">
+                        <ul class="cat-checklist">
+                            <li ng-repeat="item in catCheckList" ng-include="'catcheckedit.html'"></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <strong>Tags</strong>
+                    <div class="tag_group">
+                        <div class="selectTags">
+                            <span class="btn btn-sm btn-default" ng-repeat="tag in selectTags">{{tag.name}} <a href="#" ng-click="addTag(tag)"><i class="fa fa-close"></i></a></span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="tag" ng-model="newTag" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="addNewTag()" class="btn btn-default">Thêm</button>
+                            </span>
+                        </div>
+                    </div>
+                    <strong>Danh sách thẻ có sẵn</strong>
+                    <div class="listTags">
+                        <a ng-repeat="tag in listTags" href="#" ng-click="addTag(tag)">{{tag.name}}</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary"><i class="fa fa-save"></i> Cập nhật</button>
+                    <a ui-sref="article" class="btn btn-danger"><i class="fa fa-close"></i> Hủy</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div ng-controller="fileModalCtrl">
+    <div ng-include="modalFilesLink"></div>
+</div>
+

@@ -1,0 +1,18 @@
+
+<div class="wrapper">
+    <div class="posts grid_posts dynamic-grid" list-status args='{{sttargs}}'> 
+        <div ng-repeat="item in statuss" class="post grid" app-repeat>
+            <div ng-include="statusGrid"></div>
+        </div>
+
+        <div class="loadmore">
+            <div class="pull-left">
+                <a ng-if="page>1" ng-click="loadMore(page-1)" class="btn btn-sm btn-info"><i class="fa fa-long-arrow-left"></i> Trang trước</a>
+            </div>
+            <div class="pull-right text-right">
+                <a ng-if="page<pages" ng-click="loadMore(nextPage)" class="btn btn-sm btn-info">Trang sau <i class="fa fa-long-arrow-right"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
